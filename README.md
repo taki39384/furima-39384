@@ -4,11 +4,13 @@
 
 | Column             | Type   | Options                   |
 | ------------------ | ------ | --------------------------|
-| Nick name          | string | null: false               |
+| Nick_name          | string | null: false               |
 | email              | string | null: false, unique: true |
 | encrypted_password | string | null: false               |
-| name               | string | null: false               |
-| name_kana          | string | null: false               |
+| Last_name          | string | null: false               |
+| First_name         | string | null: false               |
+| Last_name_kana     | string | null: false               |
+| First_name_kana    | string | null: false               |
 | birth_day          | date   | null: false               |
 
 ### Association
@@ -22,12 +24,12 @@
 | ------------------- | ---------- | ----------- |
 | name                | string     | null: false |
 | category            | string     | null: false |
-| explanation         | string     | null: false |
-| situation           | string     | null: false |
-| delivery_charge     | string     | null: false |
-| region_of_origin    | string     | null: false |
-| day_to_ship         | string     | null: false |
-| price               | string     | null: false |
+| explanation         | text       | null: false |
+| situation_id        | integer    | null: false |
+| delivery_charge_id  | integer    | null: false |
+| region_of_origin_id | integer    | null: false |
+| day_to_ship_id      | integer    | null: false |
+| price               | integer    | null: false |
 | user_id             | references | null: false, foreign_key: true |
 
 ### Association
@@ -47,17 +49,18 @@
 - has_one :item
 - belongs_to :user
 
-## information テーブル
+## informations テーブル
 
-| Column            | Type       | Options       |
-| -------           | ---------- | ------------- |
-| post_code         | string     | null: false   |
-| prefectures       | string     | null: false   |
-| municipalities    | string     | null: false   |
-| address           | string     | null: false   |
-| Building name     | string     | null: false   |
-| number            | string     | null: false   |
+| Column              | Type       | Options                          |
+| -------             | ---------- | ---------------------------------|
+| post_code           | string     | null: false                      |
+| region_of_origin_id | integer    | null: false                      |
+| municipalities      | string     | null: false                      |
+| address             | string     | null: false                      |
+| building_name       | string     |                                  |
+| number              | string     | null: false                      |
+| order_id            | references | null: false, foreign_key: true   |
 
 ### Association
 
-- has_one :order
+- belongs_to :order
