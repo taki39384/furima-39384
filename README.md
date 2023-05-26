@@ -2,15 +2,15 @@
 
 ## users テーブル
 
-| Column             | Type   | Options                   |
+| column             | type   | options                   |
 | ------------------ | ------ | --------------------------|
-| Nick_name          | string | null: false               |
+| nick_name          | string | null: false               |
 | email              | string | null: false, unique: true |
 | encrypted_password | string | null: false               |
-| Last_name          | string | null: false               |
-| First_name         | string | null: false               |
-| Last_name_kana     | string | null: false               |
-| First_name_kana    | string | null: false               |
+| last_name          | string | null: false               |
+| first_name         | string | null: false               |
+| last_name_kana     | string | null: false               |
+| first_name_kana    | string | null: false               |
 | birth_day          | date   | null: false               |
 
 ### Association
@@ -20,17 +20,17 @@
 
 ## items テーブル
 
-| Column              | Type       | Options     |
+| column              | type       | options     |
 | ------------------- | ---------- | ----------- |
 | name                | string     | null: false |
-| category            | string     | null: false |
+| category_id         | integer    | null: false |
 | explanation         | text       | null: false |
 | situation_id        | integer    | null: false |
 | delivery_charge_id  | integer    | null: false |
 | region_of_origin_id | integer    | null: false |
 | day_to_ship_id      | integer    | null: false |
 | price               | integer    | null: false |
-| user_id             | references | null: false, foreign_key: true |
+| user                | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -39,10 +39,10 @@
 
 ## orders テーブル
 
-| Column    | Type       | Options                        |
+| column    | type       | options                        |
 | ------    | ---------- | ------------------------------ |
-| user_id   | references | null: false, foreign_key: true |
-| item_id   | references | null: false, foreign_key: true |
+| user      | references | null: false, foreign_key: true |
+| item      | references | null: false, foreign_key: true |
 
 ### Association
 
@@ -51,7 +51,7 @@
 
 ## informations テーブル
 
-| Column              | Type       | Options                          |
+| column              | type       | options                          |
 | -------             | ---------- | ---------------------------------|
 | post_code           | string     | null: false                      |
 | region_of_origin_id | integer    | null: false                      |
@@ -59,7 +59,7 @@
 | address             | string     | null: false                      |
 | building_name       | string     |                                  |
 | number              | string     | null: false                      |
-| order_id            | references | null: false, foreign_key: true   |
+| order               | references | null: false, foreign_key: true   |
 
 ### Association
 
