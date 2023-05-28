@@ -69,6 +69,49 @@ RSpec.describe User, type: :model do
         @user.valid?
         expect(@user.errors.full_messages).to include('Email is invalid')
       end
+      it '重複したメールアドレスでは登録できないこと' do
+        FactoryBot.create(:user, email: @user.email)
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Email has already been taken')
+      end
+      it '英字のみのパスワードでは登録できないこと' do
+        @user.password = 'password'
+        @user.password_confirmation = 'password'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password must be alphanumeric with at least one letter and one number')
+      end
+      it '数字のみのパスワードでは登録できないこと' do
+        @user.password = '123456'
+        @user.password_confirmation = '123456'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password must be alphanumeric with at least one letter and one number')
+      end
+      it '全角文字を含むパスワードでは登録できないこと' do
+        @user.password = '１２３abc'
+        @user.password_confirmation = '１２３abc'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Password must be alphanumeric with at least one letter and one number')
+      end
+      it '半角文字を含む姓では登録できないこと' do
+        @user.last_name = 'Sato'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last name は全角で入力してください')
+      end
+      it '半角文字を含む名では登録できないこと' do
+        @user.first_name = 'Asuka'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('First name は全角で入力してください')
+      end
+      it 'ひらがなや漢字を含む姓カナでは登録できないこと' do
+        @user.last_name_kana = '齋藤'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('Last name kana は全角カタカナで入力してください')
+      end
+      it 'ひらがなや漢字を含む名カナでは登録できないこと' do
+        @user.first_name_kana = '飛鳥'
+        @user.valid?
+        expect(@user.errors.full_messages).to include('First name kana は全角カタカナで入力してください')
+      end
     end
   end 
 end
