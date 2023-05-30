@@ -1,4 +1,4 @@
-class Region_of_origin < ActiveHash::Base
+class RegionOfOrigin < ActiveHash::Base
   self.data = [
     { id: 1, region_of_origin: "---" },
     { id: 2, region_of_origin: "北海道" },
