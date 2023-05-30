@@ -10,14 +10,15 @@ class Item < ApplicationRecord
 
 
   with_options numericality: { other_than: 1, message: "can't be blank" } do
-    validates :category_id
-    validates :situation_id
-    validates :delivery_charge_id
-    validates :region_of_origin_id
-    validates :day_to_ship_id
+    validates :category_id, presence: true, numericality: { only_integer: true }
+    validates :situation_id, presence: true, numericality: { only_integer: true }
+    validates :delivery_charge_id, presence: true, numericality: { only_integer: true }
+    validates :region_of_origin_id, presence: true, numericality: { only_integer: true }
+    validates :day_to_ship_id, presence: true, numericality: { only_integer: true }
   end
 
   validates :name, presence: true
+  validates :itemimage, presence: true
   validates :category_id, presence: true, numericality: { only_integer: true }
   validates :explanation, presence: true
   validates :situation_id, presence: true, numericality: { only_integer: true }
