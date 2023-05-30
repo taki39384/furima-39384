@@ -29,27 +29,27 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Explanation can't be blank")
       end
       it 'category_idが未選択だと出品できない' do
-        @item.category_id = nil
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it 'situation_idが未選択だと出品できない' do
-        @item.situation_id = nil
+        @item.situation_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Situation can't be blank")
       end
       it 'delivery_charge_idが未選択だと出品できない' do
-        @item.delivery_charge_id = nil
+        @item.delivery_charge_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Delivery charge can't be blank")
       end
       it 'region_of_origin_idが未選択だと出品できない' do
-        @item.region_of_origin_id = nil
+        @item.region_of_origin_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Region of origin can't be blank")
       end
       it 'day_to_ship_idが未選択だと出品できない' do
-        @item.day_to_ship_id = nil
+        @item.day_to_ship_id = 1
         @item.valid?
         expect(@item.errors.full_messages).to include("Day to ship can't be blank")
       end
@@ -62,6 +62,20 @@ RSpec.describe Item, type: :model do
         @item.price = "２０００"
         @item.valid?
         expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+      it 'priceが¥300~¥9,999,999の間でないと出品できない' do
+        @item.price = 200
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be greater than or equal to 300")
+        
+        @item.price = 10_000_000
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price must be less than or equal to 9999999")
+      end
+      it 'userが紐づていないと出品できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages).to include("User must exist")
       end
     end
   end
