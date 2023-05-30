@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   has_one_attached :itemimage
   belongs_to :user
 
-  validates :title, :text, presence: true
+
   with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id
     validates :situation_id
