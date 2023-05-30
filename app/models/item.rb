@@ -12,9 +12,9 @@ class Item < ApplicationRecord
   with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id
     validates :situation_id
-    validates :delivery_charge
-    validates :region_of_origin
-    validates :day_to_ship
+    validates :delivery_charge_id
+    validates :region_of_origin_id
+    validates :day_to_ship_id
   end
 
   validates :name, presence: true
