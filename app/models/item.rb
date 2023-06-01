@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :day_to_ship
   has_one_attached :itemimage
   belongs_to :user
+  has_one :order
 
 
   with_options numericality: { other_than: 1, message: "can't be blank" } do
