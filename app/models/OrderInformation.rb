@@ -11,7 +11,7 @@ class OrderInformation
     validates :municipalities
     validates :address
     validates :number
-    validates :order
+    
   end
 
   def save
