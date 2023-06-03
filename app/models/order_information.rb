@@ -1,6 +1,6 @@
 class OrderInformation
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :post_code, :region_of_origin_id, :municipalities, :address, :building_name, :number, :order
+  attr_accessor :user_id, :item_id, :post_code, :region_of_origin_id, :municipalities, :address, :building_name, :number, :order, :token
 
   # ここにバリデーションの処理を書く
   with_options presence: true do
@@ -11,7 +11,7 @@ class OrderInformation
     validates :municipalities
     validates :address
     validates :number
-    
+    validates :token
   end
 
   def save
