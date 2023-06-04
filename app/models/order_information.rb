@@ -1,13 +1,12 @@
 class OrderInformation
   include ActiveModel::Model
-  attr_accessor :user_id, :item_id, :post_code, :region_of_origin_id, :municipalities, :address, :building_name, :number, :order, :token
+  attr_accessor :user_id, :item_id, :post_code, :region_of_origin_id, :municipalities, :address, :building_name, :number, :token
 
   # ここにバリデーションの処理を書く
   with_options presence: true do
     validates :user_id
     validates :item_id
     validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
-    validates :region_of_origin_id
     validates :municipalities
     validates :address
     validates :number, format: {with: /\A\d{10,11}\z/}
