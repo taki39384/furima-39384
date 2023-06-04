@@ -6,13 +6,16 @@ class OrderInformation
   with_options presence: true do
     validates :user_id
     validates :item_id
-    validates :post_code
+    validates :post_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :region_of_origin_id
     validates :municipalities
     validates :address
-    validates :number
+    validates :number, format: {with: /\A\d{10,11}\z/}
     validates :token
   end
+
+  validates :region_of_origin_id, numericality: { other_than: 1, message: "can't be blank" }
+
 
   def save
     # 各テーブルにデータを保存する処理を書く
