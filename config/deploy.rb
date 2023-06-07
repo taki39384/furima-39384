@@ -1,10 +1,10 @@
 # config valid for current version and patch releases of Capistrano
-lock "3.17.3"
+lock '3.17.3'
 
-set :application, "furima-39384"
-set :repo_url, "git@example.com:taki39384/furima-39384.git"
+set :application, 'furima-39384'
+set :repo_url, 'git@example.com:taki39384/furima-39384.git'
 
-set :branch, "main"
+set :branch, 'main'
 
 # バージョンが変わっても共通で参照するディレクトリを指定
 set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system', 'public/uploads')
