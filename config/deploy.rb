@@ -1,7 +1,7 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.17.3"
 
-set :application, "furima_39384"
+set :application, "furima-39384"
 set :repo_url, "git@example.com:taki39384/furima-39384.git"
 
 # バージョンが変わっても共通で参照するディレクトリを指定
