@@ -340,7 +340,7 @@ GEM
     zeitwerk (2.6.8)
 
 PLATFORMS
-  x86_64-darwin-22
+  ruby
 
 DEPENDENCIES
   active_hash
@@ -384,4 +384,4 @@ RUBY VERSION
    ruby 2.6.5p114
 
 BUNDLED WITH
-   2.4.13
+   2.1.4
